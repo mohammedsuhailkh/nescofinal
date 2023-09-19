@@ -481,7 +481,7 @@ window.jssor_5_slider_init = function() {
 
             var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
 
-            jssor_4_slider.$ScaleWidth(expectedWidth);
+            jssor_5_slider.$ScaleWidth(expectedWidth);
         }
         else {
             window.setTimeout(ScaleSlider, 30);
