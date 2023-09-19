@@ -423,6 +423,81 @@ window.jssor_4_slider_init = function() {
 
 
 
+const accordionItemHeaders5 = document.querySelectorAll(".accordion-item-header");
+
+accordionItemHeaders.forEach(accordionItemHeader => {
+  accordionItemHeader.addEventListener("click", event => {
+
+
+
+    accordionItemHeader.classList.toggle("active");
+    const accordionItemBody = accordionItemHeader.nextElementSibling;
+    if(accordionItemHeader.classList.contains("active")) {
+      accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+    }
+    else {
+      accordionItemBody.style.maxHeight = 0;
+    }
+
+  });
+});
+
+
+window.jssor_5_slider_init = function() {
+
+    var jssor_5_SlideshowTransitions = [
+      {$Duration:800,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+      {$Duration:800,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
+    ];
+
+    var jssor_5_options = {
+      $AutoPlay: 1,
+      $SlideshowOptions: {
+        $Class: $JssorSlideshowRunner$,
+        $Transitions: jssor_5_SlideshowTransitions,
+        $TransitionsOrder: 1
+      },
+      $ArrowNavigatorOptions: {
+        $Class: $JssorArrowNavigator$
+      },
+      $ThumbnailNavigatorOptions: {
+        $Class: $JssorThumbnailNavigator$,
+        $Orientation: 2,
+        $NoDrag: true
+      }
+    };
+
+    var jssor_5_slider = new $JssorSlider$("jssor_5", jssor_5_options);
+
+    /*#region responsive code begin*/
+
+    var MAX_WIDTH = 980;
+
+    function ScaleSlider() {
+        var containerElement = jssor_5_slider.$Elmt.parentNode;
+        var containerWidth = containerElement.clientWidth;
+
+        if (containerWidth) {
+
+            var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+            jssor_4_slider.$ScaleWidth(expectedWidth);
+        }
+        else {
+            window.setTimeout(ScaleSlider, 30);
+        }
+    }
+
+    ScaleSlider();
+
+    $Jssor$.$AddEvent(window, "load", ScaleSlider);
+    $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+    /*#endregion responsive code end*/
+};
+
+
+
 
 
 
@@ -432,6 +507,7 @@ jssor_1_slider_init();
 jssor_2_slider_init();
 jssor_3_slider_init();
 jssor_4_slider_init();
+jssor_5_slider_init();
 
 
 
